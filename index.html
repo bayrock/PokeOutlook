@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>PokeOutlook Alpha</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+  <script>
+    var socket = io();
+
+    socket.on('scan', function(result){
+      for (id in result) {
+        var poke = result[id];
+        //console.log(poke.name);
+        $('#pokemon').append($('<li>').text(poke.name));
+      }
+    });
+  </script>
+
+  <body>
+
+    <div class="container">
+
+      <div id="sidebar"></div>
+
+      <div id="header"></div>
+
+      <div id="content">
+        <ul id="pokemon"></ul>
+      </div>
+
+      <div id="footer"></div>
+
+    </div>
+
+  </body>
+</html>

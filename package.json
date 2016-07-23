@@ -1,0 +1,10 @@
+{
+  "name": "pokemon-go-tracker",
+  "version": "0.0.1",
+  "description": "PokeOutlook Alpha",
+  "dependencies": {
+    "express": "4.10.2",
+    "socket.io": "^1.4.8",
+    "pokego-scan": ">=0.1.4"
+  }
+}
