@@ -8,15 +8,21 @@ body { font: 13px Helvetica, Arial; }
 }*/
 
 #content {
-  border:1px solid #000;
+  /*border:1px solid #000;*/
   margin:5px 0 5px 0;
+}
+
+#map {
+  border:1px solid #000;
+  /*margin:5px 0 5px 0;*/
+  height: 1000px;
 }
 
 #sidebar {
     position:absolute;
     top:0; bottom:0; left:0;
     width:50px;
-    background:#000;
+    background:#404040;
 }
 
 /*#footer { border:1px solid #000; width:100px; height:20px;

@@ -14,13 +14,19 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
+//connect
 io.on('connection', function(socket){
   console.log('a user connected');
 
-  //scan logic
+  //scanning test
   var Scanner = new pokescan();
-  Scanner.scan(socket);
+  socket.on('marker_placed', function(location){
+    Scanner.setCoords(location);
+    //Scanner.scan(socket);
+    Scanner.printNames(socket);
+  });
 
+  //disconnect
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });

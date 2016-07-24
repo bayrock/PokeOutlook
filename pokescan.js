@@ -2,12 +2,19 @@
 
 var pokegoScan = require('pokego-scan');
 
+//default to Central Park, NYC
 var coords = {
-    latitude: 40.4164737,
-    longitude: -3.7042757
+    latitude: 40.785091,
+    longitude: -73.968285
 };
 
 var Scanner = function () {};
+
+Scanner.prototype.setCoords = function(location) {
+  coords.latitude = location.lat;
+  coords.longitude = location.lng;
+  console.log(coords);
+}
 
  Scanner.prototype.scan = function(socket) {
    // obtain an array of pokemon close to the given coordinates
@@ -20,10 +27,14 @@ var Scanner = function () {};
    });
  }
 
- Scanner.prototype.printNames = function() {
+ Scanner.prototype.printNames = function(socket) {
    // obtain an array of pokemon close to the given coordinates
    pokegoScan(coords, function(err, pokemon) {
-       if (err) throw err;
+       if (err) {
+         socket.emit('errorhandler', "Error scanning pokemon; try again later!");
+         //throw err;
+         return;
+       }
 
        for (id in pokemon) {
          var poke = pokemon[id];
