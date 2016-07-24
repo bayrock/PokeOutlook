@@ -22,8 +22,8 @@ io.on('connection', function(socket){
   var Scanner = new pokescan();
   socket.on('marker_placed', function(location){
     Scanner.setCoords(location);
-    //Scanner.scan(socket);
-    Scanner.printNames(socket);
+    Scanner.scan(socket);
+    console.log("Scanning for nearby pokemon at marker.");
   });
 
   //disconnect

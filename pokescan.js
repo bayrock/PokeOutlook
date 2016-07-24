@@ -10,36 +10,48 @@ var coords = {
 
 var Scanner = function () {};
 
+var handleError = function(err, socket) {
+    var error = err.message || "Error scanning pokemon; try again later!"
+    socket.emit('errorhandler', error); // emit the error to the client
+    console.log("Error: " + error);
+    //throw err;
+}
+
 Scanner.prototype.setCoords = function(location) {
   coords.latitude = location.lat;
   coords.longitude = location.lng;
+  console.log("Marker placed:");
   console.log(coords);
 }
 
  Scanner.prototype.scan = function(socket) {
    // obtain an array of pokemon close to the given coordinates
    pokegoScan(coords, function(err, pokemon) {
-       if (err) throw err;
-       //console.log(pokemon);
+    if (err) {
+      handleError(err, socket);
+      return;
+    }
 
-       // emit the scan event and pass the array to the client
-       socket.emit('scan',  pokemon);
+    //console.log(pokemon);
+
+    // emit the scan event and pass the array to the client
+    console.log("Scan succeeded! Populating map...");
+    socket.emit('scan',  pokemon);
    });
  }
 
  Scanner.prototype.printNames = function(socket) {
    // obtain an array of pokemon close to the given coordinates
    pokegoScan(coords, function(err, pokemon) {
-       if (err) {
-         socket.emit('errorhandler', "Error scanning pokemon; try again later!");
-         //throw err;
-         return;
-       }
+     if (err) {
+       handleError(err, socket);
+       return;
+     }
 
-       for (id in pokemon) {
-         var poke = pokemon[id];
-         console.log(poke.name);
-       }
+     for (id in pokemon) {
+       var poke = pokemon[id];
+       console.log(poke.name);
+     }
    });
  }
 

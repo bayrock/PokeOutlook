@@ -1,3 +1,0 @@
-- Implement Google Maps
-- Wire map click to socket.io event
-- Scan and populate region upon click

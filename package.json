@@ -1,10 +1,19 @@
 {
   "name": "poke-outlook",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "PokeOutlook Alpha",
   "dependencies": {
     "express": "4.10.2",
     "pokego-scan": ">=0.1.4",
     "socket.io": "^1.4.8"
+  },
+  "author" : {
+      "name" : "Bailey Chestnut",
+      "email" : "bayrock@devinity.org",
+      "url" : "https://github.com/bayrock"
+  },
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/bayrock/PokeOutlook"
   }
 }

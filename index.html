@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+<!-- HEAD -->
   <head>
     <title>PokéOutlook Alpha</title>
 
@@ -10,24 +11,25 @@
   <script src="/socket.io/socket.io.js"></script>
   <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
 
+<!-- EVENTS -->
   <script>
     var socket = io();
 
     //receive the scan results from the server
     socket.on('scan', function(result){
       for (id in result) {
-        var poke = result[id];
-        //console.log(poke.name);
-        //$('#pokemon').append($('<li>').text(poke.name));
+        var pokemon = result[id];
+        placePokeMarker(pokemon);
       }
     });
 
-    //receive the error results from the server
-    socket.on('errorhandler', function(result){
-      console.log(result);
+    //receive the error from the server
+    socket.on('errorhandler', function(error){
+      console.log(error);
     });
   </script>
 
+<!-- MAPS -->
   <script>
     //Initialize the google map
     var map;
@@ -40,26 +42,37 @@
       });
 
       google.maps.event.addListener(map, 'click', function(event) {
-        placeMarker(event.latLng);
+        placeScanMarker(event.latLng);
         socket.emit('marker_placed',  event.latLng); // send location to the server
       });
     }
 
-    var marker;
-    function placeMarker(location) {
-      if (marker != null) {
-        marker.setMap(null);
+    var scanMarker;
+    function placeScanMarker(location) {
+      if (scanMarker != null) {
+        scanMarker.setMap(null);
       }
 
-      marker = new google.maps.Marker({
+      scanMarker = new google.maps.Marker({
         position: location,
         map: map
+      });
+    }
+
+    function placePokeMarker(pokemon) {
+
+      var pokeMarker = new google.maps.Marker({
+        position: {lat: pokemon.latitude, lng: pokemon.longitude},
+        map: map,
+        title: pokemon.name || "N/A",
+        icon: pokemon.image
       });
     }
 
     google.maps.event.addDomListener(window, "load", initMap);
   </script>
 
+<!-- BODY -->
   <body>
 
     <div class="container">
