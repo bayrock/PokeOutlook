@@ -1,0 +1,6 @@
+
+- Add multicharacter marker labels for despawn timer
+- Add settings panel
+- Add filtering by specific pokemon
+- Make map height responsive to resizing
+- Mobile friendly support

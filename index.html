@@ -67,6 +67,37 @@
         title: pokemon.name || "N/A",
         icon: pokemon.image
       });
+
+      createDespawnTimer(pokemon.despawns_in, pokeMarker);
+    }
+
+    function createDespawnTimer(duration, marker) {
+      var start = Date.now(),
+        diff,
+        minutes,
+        seconds;
+      function timer() {
+        // get the number of seconds that have elapsed since
+        // startTimer() was called
+        diff = duration - (((Date.now() - start) / 1000) | 0);
+
+        // does the same job as parseInt truncates the float
+        minutes = (diff / 60) | 0;
+        seconds = (diff % 60) | 0;
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        //marker.set("label", minutes + ":" + seconds); // WE NEED MULTICHARACTER LABELS ASAP
+
+        if (diff <= 0) {
+          //destroy the marker when the timer ends
+          marker.setMap(null);
+        }
+      }
+      // we don't want to wait a full second before the timer starts
+      timer();
+      setInterval(timer, 1000);
     }
 
     google.maps.event.addDomListener(window, "load", initMap);
@@ -82,8 +113,10 @@
       <div id="header"></div>
 
       <div id="content">
-        <div id="map"></div>
-        <ul id="pokemon"></ul>
+        <div id ="map_container">
+          <div id="map"></div>
+        </div>
+        <div id="logo"><a href="#"><img src="logo.png" alt="PokéOutlook" style="width:33%;height:33%;"></a></div>
       </div>
 
       <div id="footer"></div>
