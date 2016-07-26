@@ -1,6 +1,6 @@
 //pokescan.js
 
-var pokegoScan = require('pokego-scan');
+var pokegoScan = require('./scripts/pokego-scan');
 
 //default to Central Park, NYC
 var coords = {
