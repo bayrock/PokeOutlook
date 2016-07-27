@@ -1,10 +1,9 @@
 {
-  "name": "poke-outlook",
-  "version": "0.0.5",
+  "name": "pokeoutlook",
+  "version": "0.0.6",
   "description": "PokeOutlook Alpha",
   "dependencies": {
     "express": "4.10.2",
-    "pokego-scan": ">=0.1.4",
     "socket.io": "^1.4.8"
   },
   "author": {

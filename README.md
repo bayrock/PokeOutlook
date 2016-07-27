@@ -1,11 +1,11 @@
 # PokéOutlook
 A lightweight web app for mapping Pokémon locations in Pokémon GO.
 
-Does not require PTC or Google authentication.
+Does **not** require Pokémon Trainer Club or Google authentication.
 
 ***
 
-This repo is an early WIP. Intentions are for educational purposes only.
+This project is still a WIP. Intentions are for educational purposes only.
 
 ### Features:
 - Loads maps via Google API
@@ -13,7 +13,7 @@ This repo is an early WIP. Intentions are for educational purposes only.
 - Places Pokémon in their exact location on the map
 - Removes Pokémon when their despawn time is reached
 
-Feedback is welcomed.
+Feedback and contributions are welcomed.
 
 ![Alpha v0.0.5](http://i.imgur.com/dVg4j5Y.png)
 
@@ -22,10 +22,10 @@ Feedback is welcomed.
 ### FAQ:
 
 #### *Isn't this just another PokéVision or [PokémonGo-Map](https://github.com/AHAAAAAAA/PokemonGo-Map)?*
-Yes, and no. While the projects do share similarities; PokéOutlook aims to provide a simple alternative for the public to build together.
+Yes, and no. While the projects do share similarities; PokéOutlook provides a simple alternative for the public to build together.
 
 #### *Does it require PTC or Google authentication?*
-Currently PokéOutlook **does not** require  any authentication with PTC or Google.
+Currently PokéOutlook **does not** require  any authentication with Pokémon Trainer Club or Google.
 
 ***
 

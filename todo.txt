@@ -1,9 +1,0 @@
-
-- Add multicharacter marker labels for despawn timer
-- Add 'loading' div for scanning
-- Add 'error' div for errors
-- Add settings panel
-- Add filtering by specific pokemon
-- Add auto scanning
-- Make map height responsive to resizing
-- Mobile friendly support

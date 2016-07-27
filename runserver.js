@@ -1,37 +1,57 @@
 //index.js
 
-//app and server logic
-var app = require('express')();
+/*
+Housekeeping
+*/
+
 var express = require('express');
+var app = express()
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 var pokescan = require('./pokescan.js');
 
+//use assets folder for static files
 app.use(express.static(__dirname + '/assets'));
 
+//get index.html as homepage
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
 });
 
-//connect
-io.on('connection', function(socket){
-  console.log('a user connected');
+/*
+Events
+*/
 
-  //scanning test
+var session = 0;
+
+//Connect event
+io.on('connection', function(socket){
+  session = session + 1
+  socket.id = '[Session #'+session+']';
+
+  console.log(socket.id+' - connected');
+
+  //Marker event
   var Scanner = new pokescan();
   socket.on('marker_placed', function(location){
     Scanner.setCoords(location);
     Scanner.scan(socket);
-    console.log("Scanning for nearby pokemon at marker.");
+    console.log('Scanning for nearby pokemon at marker.');
   });
 
-  //disconnect
+  //Disconnect event
   socket.on('disconnect', function(){
-    console.log('user disconnected');
+    console.log(socket.id+' - disconnected');
   });
 });
 
-http.listen(3000, function(){
-  console.log('listening on port 3000');
+/*
+Listen
+*/
+
+var port = 3000;
+
+http.listen(port, function(){
+  console.log('listening on port ' + port);
 });

@@ -1,7 +1,11 @@
 
+/*
+Body
+*/
+
 body { font: 13px Helvetica, Arial; }
 
-.container { position:relative; padding:0 0 0 55px; }
+.container { position:relative; padding:0 0 0 0px; }
 
 /*#header { border:1px solid #000; width:100px; height:20px;
     margin:0 0 5px 0;
@@ -20,27 +24,35 @@ body { font: 13px Helvetica, Arial; }
 }
 
 #map_container {
-  /* attempt to make map height responsive here */
+  /* disable text highlight */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 #map {
   position: relative;
   border:1px solid #000;
   /*margin:5px 0 5px 0;*/
-  height: 1000px;
+  height: 980px;
 }
 
-#sidebar {
+/*#sidebar {
     position:absolute;
     top:0; bottom:0; left:0;
     width:50px;
     background:#404040;
-}
+}*/
 
 /*#footer { border:1px solid #000; width:100px; height:20px;
     margin:5px 0 0 0;
 }*/
 
-#pokemon { list-style-type: none; margin: 0; padding: 0; }
-#pokemon li { padding: 5px 10px; }
-#pokemon li:nth-child(odd) { background: #eee; }
+/*
+Infowindow
+*/
+
+.gm-style-iw + div {display: none;} /* Don't show close button on infowindow */

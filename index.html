@@ -64,8 +64,20 @@
       var pokeMarker = new google.maps.Marker({
         position: {lat: pokemon.latitude, lng: pokemon.longitude},
         map: map,
-        title: pokemon.name || "N/A",
+        name: pokemon.name || "Unknown",
         icon: pokemon.image
+      });
+
+      pokeMarker.infowindow = new google.maps.InfoWindow({
+        content: "<div><b>"+pokemon.name+"</b><br>Despawn:  "+pokemon.despawns_in_str+"</div>"
+      });
+
+      pokeMarker.addListener('mouseover', function() {
+        this.infowindow.open(map, this);
+      });
+
+      pokeMarker.addListener('mouseout', function() {
+          this.infowindow.close();
       });
 
       createDespawnTimer(pokemon.despawns_in, pokeMarker);
@@ -88,7 +100,8 @@
         minutes = minutes < 10 ? "0" + minutes : minutes;
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        //marker.set("label", minutes + ":" + seconds); // WE NEED MULTICHARACTER LABELS ASAP
+        var despawn = minutes+":"+seconds
+        marker.infowindow.setContent("<div><b>"+marker.name+"</b><br>Despawn:  "+despawn+"</div>");
 
         //if the timer has ended
         if (diff <= 0) {

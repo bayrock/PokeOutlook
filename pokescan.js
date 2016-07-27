@@ -32,15 +32,13 @@ Scanner.prototype.setCoords = function(location) {
       return;
     }
 
-    //console.log(pokemon);
-
     // emit the scan event and pass the array to the client
     console.log("Scan succeeded! Populating map...");
     socket.emit('scan',  pokemon);
    });
  }
 
- Scanner.prototype.printNames = function(socket) {
+ Scanner.prototype.printData = function(socket) {
    // obtain an array of pokemon close to the given coordinates
    pokegoScan(coords, function(err, pokemon) {
      if (err) {
@@ -48,10 +46,7 @@ Scanner.prototype.setCoords = function(location) {
        return;
      }
 
-     for (id in pokemon) {
-       var poke = pokemon[id];
-       console.log(poke.name);
-     }
+     console.log(pokemon)
    });
  }
 
