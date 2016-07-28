@@ -5,11 +5,13 @@
     <title>PokéOutlook Alpha</title>
 
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="animate.css"/>
   </head>
 
   <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDieWcsvaI0MFfP3mGKJ-9pjxcMQ2yKQgo"></script>
   <script src="/socket.io/socket.io.js"></script>
-  <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+  <script type="text/javascript" src="js/noty/packaged/jquery.noty.packaged.min.js"></script>
 
 <!-- EVENTS -->
   <script>
@@ -25,7 +27,15 @@
 
     //receive the error from the server
     socket.on('errorhandler', function(error){
-      console.log(error);
+      //console.log(error);
+
+      var note = noty({layout: 'topCenter',text: error.message, type: error.type,
+        animation: {
+          open: 'animated flipInX', // animate.css class names
+          close: 'animated flipOutX' // animate.css class names
+        },
+        timeout: 4000
+      });
     });
 
     //receive the loading from the server

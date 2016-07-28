@@ -11,8 +11,8 @@ var io = require('socket.io')(http);
 
 var pokescan = require('./pokescan.js');
 
-//use assets folder for static files
-app.use(express.static(__dirname + '/assets'));
+//use static folder for static files
+app.use(express.static(__dirname + '/static'));
 
 //get index.html as homepage
 app.get('/', function(req, res){
@@ -36,6 +36,7 @@ io.on('connection', function(socket){
   var Scanner = new pokescan();
   socket.on('marker_placed', function(location){
     Scanner.setCoords(location);
+    socket.emit('loading', true); // emit load to client
     Scanner.scan(socket);
     console.log('Scanning for nearby pokemon at marker.');
   });
