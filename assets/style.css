@@ -3,27 +3,32 @@
 Body
 */
 
-body { font: 13px Helvetica, Arial; }
+html, body { font: 13px Helvetica, Arial; height: 100%; }
 
-.container { position:relative; padding:0 0 0 0px; }
+.container { position:relative; padding:0 0 0 0px; width: 100%; height: 100%; }
 
 /*#header { border:1px solid #000; width:100px; height:20px;
     margin:0 0 5px 0;
 }*/
 
 #logo {
-    position: absolute;
-    opacity: 0.5;
-    top: 5px;
-    right: -235px;
+  position: absolute;
+  opacity: 0.5;
+  top: 5px;
+  right: -235px;
 }
 
 #content {
+  width: 100%;
+  height: 94%;
   /*border:1px solid #000;*/
-  margin:5px 0 5px 0;
+  /*margin:5px 0 5px 0;*/
 }
 
 #map_container {
+  /*responsive map container*/
+  position: absolute;
+  top: 0; right: 0; left: 0; bottom: 0;
   /* disable text highlight */
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -37,19 +42,34 @@ body { font: 13px Helvetica, Arial; }
   position: relative;
   border:1px solid #000;
   /*margin:5px 0 5px 0;*/
-  height: 980px;
+  width: 100%;
+  height: 94%;
 }
 
 /*#sidebar {
-    position:absolute;
-    top:0; bottom:0; left:0;
-    width:50px;
-    background:#404040;
+  position:absolute;
+  top:0; bottom:0; left:0;
+  width:50px;
+  background:#404040;
 }*/
 
-/*#footer { border:1px solid #000; width:100px; height:20px;
-    margin:5px 0 0 0;
-}*/
+#footer {
+  border: 1px solid #000;
+  width: 100%;
+  height: 5%;
+  /*margin:5px 0 0 0;*/
+  /*footer bg*/
+  background: rgb(252,255,244); /* Old browsers */
+  background: -moz-linear-gradient(top,  rgba(252,255,244,1) 0%, rgba(223,229,215,1) 40%, rgba(179,190,173,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(252,255,244,1) 0%,rgba(223,229,215,1) 40%,rgba(179,190,173,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(252,255,244,1) 0%,rgba(223,229,215,1) 40%,rgba(179,190,173,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 ); /* IE6-9 */
+}
+
+#loading {
+  position: relative;
+  height: 4%;
+}
 
 /*
 Infowindow

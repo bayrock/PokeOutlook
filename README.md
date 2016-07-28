@@ -22,7 +22,7 @@ Feedback and contributions are welcomed.
 ### FAQ:
 
 #### *Isn't this just another PokéVision or [PokémonGo-Map](https://github.com/AHAAAAAAA/PokemonGo-Map)?*
-Yes, and no. While the projects do share similarities; PokéOutlook provides a simple alternative for the public to build together.
+While the projects do share similarities; PokéOutlook provides a simple alternative for the public to build together.
 
 #### *Does it require PTC or Google authentication?*
 Currently PokéOutlook **does not** require  any authentication with Pokémon Trainer Club or Google.

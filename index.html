@@ -27,6 +27,15 @@
     socket.on('errorhandler', function(error){
       console.log(error);
     });
+
+    //receive the loading from the server
+    socket.on('loading', function(bool){
+      if (bool) {
+        document.getElementById("loading").innerHTML = "<img src='loading.gif' alt='Loading' style='margin:5px 0 0 5px;height: 30px'>";
+      } else {
+        document.getElementById("loading").innerHTML = "";
+      }
+    });
   </script>
 
 <!-- MAPS -->
@@ -135,7 +144,9 @@
         <div id="logo"><a href="#"><img src="logo.png" alt="PokéOutlook" style="width:33%;height:33%;"></a></div>
       </div>
 
-      <div id="footer"></div>
+      <div id="footer">
+        <div id ="loading"></div>
+      </div>
 
     </div>
 
