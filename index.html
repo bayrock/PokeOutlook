@@ -17,8 +17,20 @@
   <script>
     var socket = io();
 
+    function Notify(msg, type, length) {
+      var note = noty({layout: 'topCenter',text: msg, type: type,
+        animation: {
+          open: 'animated flipInX', // animate.css class names
+          close: 'animated flipOutX' // animate.css class names
+        },
+        timeout: length || 4000
+      });
+    }
+
     //receive the scan results from the server
     socket.on('scan', function(result){
+      Notify('Scan succeeded!', 'success', 3000)
+
       for (id in result) {
         var pokemon = result[id];
         placePokeMarker(pokemon);
@@ -26,16 +38,9 @@
     });
 
     //receive the error from the server
-    socket.on('errorhandler', function(error){
+    socket.on('error_handler', function(error){
       //console.log(error);
-
-      var note = noty({layout: 'topCenter',text: error.message, type: error.type,
-        animation: {
-          open: 'animated flipInX', // animate.css class names
-          close: 'animated flipOutX' // animate.css class names
-        },
-        timeout: 4000
-      });
+      Notify(error.message, error.type);
     });
 
     //receive the loading from the server

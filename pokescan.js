@@ -11,7 +11,7 @@ var coords = {
 var Scanner = function () {};
 
 var handleError = function(err, socket) {
-    socket.emit('errorhandler', err); // emit the error to the client
+    socket.emit('error_handler', err); // emit the error to the client
     console.log(socket.id+" - Error: " + err.message);
     //throw err;
 }
@@ -33,8 +33,9 @@ Scanner.prototype.setCoords = function(location) {
     }
 
     socket.emit('loading', false); //stop the loading indicator
+
     // emit the scan event and pass the array to the client
-    console.log("Scan succeeded! Populating map...");
+    console.log(socket.id+" - Scan succeeded");
     socket.emit('scan',  pokemon);
    });
  }

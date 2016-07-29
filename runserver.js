@@ -30,7 +30,7 @@ io.on('connection', function(socket){
   session = session + 1
   socket.id = '[Session #'+session+']';
 
-  console.log(socket.id+' - connected');
+  console.log(socket.id+' - Connected');
 
   //Marker event
   var Scanner = new pokescan();
@@ -43,7 +43,7 @@ io.on('connection', function(socket){
 
   //Disconnect event
   socket.on('disconnect', function(){
-    console.log(socket.id+' - disconnected');
+    console.log(socket.id+' - Disconnected');
   });
 });
 
