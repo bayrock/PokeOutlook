@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <!-- HEAD -->
   <head>
     <title>PokéOutlook Alpha</title>
@@ -8,140 +9,14 @@
     <link rel="stylesheet" type="text/css" href="animate.css"/>
   </head>
 
+<!-- SCRIPTS -->
   <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDieWcsvaI0MFfP3mGKJ-9pjxcMQ2yKQgo"></script>
   <script src="/socket.io/socket.io.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
   <script type="text/javascript" src="js/noty/packaged/jquery.noty.packaged.min.js"></script>
 
-<!-- EVENTS -->
-  <script>
-    var socket = io();
-
-    function Notify(msg, type, length) {
-      var note = noty({layout: 'topCenter',text: msg, type: type,
-        animation: {
-          open: 'animated flipInX', // animate.css class names
-          close: 'animated flipOutX' // animate.css class names
-        },
-        timeout: length || 4000
-      });
-    }
-
-    //receive the scan results from the server
-    socket.on('scan', function(result){
-      Notify('Scan succeeded!', 'success', 3000)
-
-      for (id in result) {
-        var pokemon = result[id];
-        placePokeMarker(pokemon);
-      }
-    });
-
-    //receive the error from the server
-    socket.on('error_handler', function(error){
-      //console.log(error);
-      Notify(error.message, error.type);
-    });
-
-    //receive the loading from the server
-    socket.on('loading', function(bool){
-      if (bool) {
-        document.getElementById("loading").innerHTML = "<img src='loading.gif' alt='Loading' style='margin:5px 0 0 5px;height: 30px'>";
-      } else {
-        document.getElementById("loading").innerHTML = "";
-      }
-    });
-  </script>
-
-<!-- MAPS -->
-  <script>
-    //Initialize the google map
-    var map;
-    function initMap() {
-      map = new google.maps.Map(document.getElementById('map'), {
-        //default to Central Park, NYC
-        center: {lat: 40.785091, lng: -73.968285},
-        zoom: 8,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      });
-
-      google.maps.event.addListener(map, 'click', function(event) {
-        placeScanMarker(event.latLng);
-        socket.emit('marker_placed',  event.latLng); // send location to the server
-      });
-    }
-
-    var scanMarker;
-    function placeScanMarker(location) {
-      if (scanMarker != null) {
-        scanMarker.setMap(null);
-      }
-
-      scanMarker = new google.maps.Marker({
-        position: location,
-        map: map
-      });
-    }
-
-    function placePokeMarker(pokemon) {
-
-      var pokeMarker = new google.maps.Marker({
-        position: {lat: pokemon.latitude, lng: pokemon.longitude},
-        map: map,
-        name: pokemon.name || "Unknown",
-        icon: pokemon.image
-      });
-
-      pokeMarker.infowindow = new google.maps.InfoWindow({
-        content: "<div><b>"+pokemon.name+"</b><br>Despawn:  "+pokemon.despawns_in_str+"</div>"
-      });
-
-      pokeMarker.addListener('mouseover', function() {
-        this.infowindow.open(map, this);
-      });
-
-      pokeMarker.addListener('mouseout', function() {
-          this.infowindow.close();
-      });
-
-      createDespawnTimer(pokemon.despawns_in, pokeMarker);
-    }
-
-    function createDespawnTimer(duration, marker) {
-      var start = Date.now(),
-        diff,
-        minutes,
-        seconds;
-      function timer() {
-        // get the number of seconds that have elapsed since
-        // startTimer() was called
-        diff = duration - (((Date.now() - start) / 1000) | 0);
-
-        // does the same job as parseInt truncates the float
-        minutes = (diff / 60) | 0;
-        seconds = (diff % 60) | 0;
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        var despawn = minutes+":"+seconds
-        marker.infowindow.setContent("<div><b>"+marker.name+"</b><br>Despawn:  "+despawn+"</div>");
-
-        //if the timer has ended
-        if (diff <= 0) {
-          //destroy the timer
-          clearInterval(marker.interval);
-          //destroy the marker
-          marker.setMap(null);
-        }
-      }
-      // we don't want to wait a full second before the timer starts
-      timer();
-      marker.interval = setInterval(timer, 1000);
-    }
-
-    google.maps.event.addDomListener(window, "load", initMap);
-  </script>
+  <script type="text/javascript" src="js/events.js"></script>
+  <script type="text/javascript" src="js/maps.js"></script>
 
 <!-- BODY -->
   <body>
