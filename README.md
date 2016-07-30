@@ -15,14 +15,14 @@ This project is still a WIP. Intentions are for educational purposes only.
 
 Feedback and contributions are welcomed.
 
-![Alpha v0.0.5](http://i.imgur.com/dVg4j5Y.png)
+![Alpha v0.0.7](http://i.imgur.com/0Rb2E6o.png)
 
 ![Alpha v0.0.5](http://i.imgur.com/aBUmcd3.png)
 
 ### FAQ:
 
 #### *Isn't this just another PokéVision or [PokémonGo-Map](https://github.com/AHAAAAAAA/PokemonGo-Map)?*
-While the projects do share similarities; PokéOutlook provides a simple alternative for the public to build together.
+While the projects do share similarities; PokéOutlook provides a lightweight alternative for the public to build together.
 
 #### *Does it require PTC or Google authentication?*
 Currently PokéOutlook **does not** require  any authentication with Pokémon Trainer Club or Google.

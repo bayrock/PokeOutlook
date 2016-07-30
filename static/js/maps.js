@@ -6,7 +6,7 @@ function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     //default to Central Park, NYC
     center: {lat: 40.785091, lng: -73.968285},
-    zoom: 8,
+    zoom: 12,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
@@ -34,7 +34,8 @@ function placePokeMarker(pokemon) {
     position: {lat: pokemon.latitude, lng: pokemon.longitude},
     map: map,
     name: pokemon.name || "Unknown",
-    icon: pokemon.image
+    icon: pokemon.image,
+    animation: google.maps.Animation.DROP
   });
 
   pokeMarker.infowindow = new google.maps.InfoWindow({

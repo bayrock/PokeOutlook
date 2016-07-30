@@ -38,7 +38,8 @@ io.on('connection', function(socket){
     Scanner.setCoords(location);
     socket.emit('loading', true); // emit load to client
     Scanner.scan(socket);
-    console.log('Scanning for nearby pokemon at marker.');
+    console.log(socket.id+" - Marker placed: latitude: " + location.lat + " longitude: " + location.lng);
+    console.log(socket.id+' - Scanning for nearby pokemon at marker.');
   });
 
   //Disconnect event
@@ -51,7 +52,7 @@ io.on('connection', function(socket){
 Listen
 */
 
-var port = 3000;
+var port = process.env.PORT || 5000; //Heroku port
 
 http.listen(port, function(){
   console.log('listening on port ' + port);

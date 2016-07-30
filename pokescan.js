@@ -19,8 +19,6 @@ var handleError = function(err, socket) {
 Scanner.prototype.setCoords = function(location) {
   coords.latitude = location.lat;
   coords.longitude = location.lng;
-  console.log("Marker placed:");
-  console.log(coords);
 }
 
  Scanner.prototype.scan = function(socket) {
